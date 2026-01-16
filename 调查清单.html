@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>莫兰迪色系调查清单</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary-color: #6C7B95; /* 莫兰迪蓝灰 */
+            --secondary-color: #9FA8A3; /* 莫兰迪灰绿 */
+            --accent-color: #7986CB; /* 莫兰迪蓝紫 */
+            --light-color: #F5F7FA; /* 浅灰背景 */
+            --dark-color: #4A6572; /* 深灰蓝 */
+            --text-color: #37474F; /* 深灰文字 */
+            --success-color: #81C784; /* 莫兰迪绿 */
+            --warning-color: #FFB74D; /* 莫兰迪橙 */
+            --border-radius: 12px;
+            --shadow: 0 8px 20px rgba(108, 123, 149, 0.12);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: #F0F4F8;
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 10% 20%, rgba(156, 175, 183, 0.1) 0%, rgba(156, 175, 183, 0.05) 90%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+            border-radius: var(--border-radius);
+            color: white;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .app-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .config-panel {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .survey-container {
+            flex: 2;
+            min-width: 400px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(108, 123, 149, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: var(--accent-color);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(108, 123, 149, 0.2);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: white;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(121, 134, 203, 0.1);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .question-item {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        .question-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 123, 149, 0.1);
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        
+        .option {
+            padding: 14px 15px;
+            background-color: white;
+            border: 2px solid rgba(108, 123, 149, 0.15);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .option:hover {
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .option.selected {
+            border-color: var(--accent-color);
+            background-color: rgba(121, 134, 203, 0.08);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .option-score {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            background-color: rgba(108, 123, 149, 0.1);
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+        
+        .btn {
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(108, 123, 149, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #8A9792;
+            transform: translateY(-3px);
+        }
+        
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-add {
+            width: 100%;
+            margin-top: 10px;
+            background-color: transparent;
+            border: 2px dashed var(--secondary-color);
+            color: var(--secondary-color);
+        }
+        
+        .btn-add:hover {
+            background-color: rgba(159, 168, 163, 0.1);
+        }
+        
+        .buttons-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .result-container {
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(245, 247, 250, 0.9) 0%, rgba(240, 244, 248, 0.9) 100%);
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--accent-color);
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .result-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+        }
+        
+        .total-score {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            background-color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(121, 134, 203, 0.2);
+        }
+        
+        .result-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .progress-container {
+            margin-top: 20px;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: rgba(108, 123, 149, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 1.5s ease;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            .config-panel, .survey-container {
+                min-width: 100%;
+            }
+            
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 动画效果 */
+        .pulse {
+            animation: pulse 0.5s ease;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .bounce {
+            animation: bounce 0.5s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-clipboard-list"></i> 莫兰迪色系调查清单</h1>
+            <p class="subtitle">创建自定义问卷，根据得分生成个性化结果</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- 配置面板 -->
+            <div class="config-panel">
+                <h2 class="section-title"><i class="fas fa-cog"></i> 问卷配置</h2>
+                
+                <div class="form-group">
+                    <label for="survey-title"><i class="fas fa-heading"></i> 问卷标题</label>
+                    <input type="text" id="survey-title" value="个性倾向调查问卷" placeholder="请输入问卷标题">
+                </div>
+                
+                <div class="form-group">
+                    <label for="survey-description"><i class="fas fa-align-left"></i> 问卷描述</label>
+                    <textarea id="survey-description" placeholder="请输入问卷描述">请根据您的实际情况选择最符合的选项，每道题只能选择一个答案。完成所有题目后，系统会根据您的选择计算总分并显示对应结果。</textarea>
+                </div>
+                
+                <h2 class="section-title"><i class="fas fa-sliders-h"></i> 结果配置</h2>
+                
+                <div class="form-group">
+                    <label for="result-low"><i class="fas fa-arrow-down"></i> 低分段结果 (0-25%)</label>
+                    <textarea id="result-low" placeholder="请输入低分段结果描述">您的得分较低，表明您可能更倾向于内向、保守的个性。您喜欢稳定的环境，做事谨慎，注重细节，但在面对变化时可能需要更多时间来适应。</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="result-medium"><i class="fas fa-arrows-alt-h"></i> 中分段结果 (26-75%)</label>
+                    <textarea id="result-medium" placeholder="请输入中分段结果描述">您的得分处于中等水平，表明您具有平衡的个性特质。您既能够享受独处时光，也能在社交场合中表现自如，适应能力较强，能够在稳定与变化之间找到平衡。</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="result-high"><i class="fas fa-arrow-up"></i> 高分段结果 (76-100%)</label>
+                    <textarea id="result-high" placeholder="请输入高分段结果描述">您的得分较高，表明您可能更倾向于外向、开放的个性。您喜欢尝试新事物，适应能力强，乐于社交，但在细节处理上可能需要更多耐心。您擅长在变化中寻找机会。</textarea>
+                </div>
+                
+                <div class="buttons-container">
+                    <button id="reset-btn" class="btn btn-secondary">
+                        <i class="fas fa-redo"></i> 重置问卷
+                    </button>
+                    <button id="save-config" class="btn btn-primary">
+                        <i class="fas fa-save"></i> 保存配置
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 问卷容器 -->
+            <div class="survey-container">
+                <h2 class="section-title"><i class="fas fa-list-ol"></i> 调查问卷</h2>
+                
+                <div id="survey-header">
+                    <h3 id="display-title">个性倾向调查问卷</h3>
+                    <p id="display-description">请根据您的实际情况选择最符合的选项，每道题只能选择一个答案。完成所有题目后，系统会根据您的选择计算总分并显示对应结果。</p>
+                </div>
+                
+                <div id="questions-container">
+                    <!-- 问题将通过JavaScript动态生成 -->
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-text">
+                        <span>完成进度</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <div class="buttons-container">
+                    <button id="add-question" class="btn btn-add">
+                        <i class="fas fa-plus-circle"></i> 添加问题
+                    </button>
+                    <button id="calculate-btn" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i> 计算得分
+                    </button>
+                </div>
+                
+                <div id="result-container" class="result-container">
+                    <div class="result-header">
+                        <h3 class="result-title">您的调查结果</h3>
+                        <div class="total-score" id="total-score">0</div>
+                    </div>
+                    <div class="result-content" id="result-content">
+                        <!-- 结果内容将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><i class="far fa-copyright"></i> 2023 莫兰迪色系调查清单 | 每个选项A、B、C、D分别对应1、2、3、4分</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始问卷数据
+            let questions = [
+                {
+                    id: 1,
+                    text: "在社交场合中，你通常：",
+                    options: [
+                        {text: "尽量避开人群，感到不自在", score: 1},
+                        {text: "只与熟悉的人交谈", score: 2},
+                        {text: "可以主动与人交谈，但不会主导话题", score: 3},
+                        {text: "享受社交，乐于结识新朋友", score: 4}
+                    ],
+                    selected: null
+                },
+                {
+                    id: 2,
+                    text: "面对新的挑战或变化时，你通常：",
+                    options: [
+                        {text: "感到焦虑，希望保持现状", score: 1},
+                        {text: "需要时间适应，但最终会接受", score: 2},
+                        {text: "愿意尝试，但会谨慎评估风险", score: 3},
+                        {text: "感到兴奋，积极迎接变化", score: 4}
+                    ],
+                    selected: null
+                },
+                {
+                    id: 3,
+                    text: "在决策时，你更倾向于：",
+                    options: [
+                        {text: "依赖他人意见或既定规则", score: 1},
+                        {text: "谨慎考虑所有可能性", score: 2},
+                        {text: "权衡利弊后做出决定", score: 3},
+                        {text: "凭直觉快速做出决定", score: 4}
+                    ],
+                    selected: null
+                },
+                {
+                    id: 4,
+                    text: "工作或学习时，你更喜欢：",
+                    options: [
+                        {text: "独自一人，不受干扰", score: 1},
+                        {text: "独立完成，但偶尔与人交流", score: 2},
+                        {text: "与少数人合作", score: 3},
+                        {text: "团队合作，集体讨论", score: 4}
+                    ],
+                    selected: null
+                }
+            ];
+            
+            // 配置元素
+            const surveyTitleInput = document.getElementById('survey-title');
+            const surveyDescriptionInput = document.getElementById('survey-description');
+            const resultLowInput = document.getElementById('result-low');
+            const resultMediumInput = document.getElementById('result-medium');
+            const resultHighInput = document.getElementById('result-high');
+            
+            // 显示元素
+            const displayTitle = document.getElementById('display-title');
+            const displayDescription = document.getElementById('display-description');
+            const questionsContainer = document.getElementById('questions-container');
+            const resultContainer = document.getElementById('result-container');
+            const totalScoreElement = document.getElementById('total-score');
+            const resultContentElement = document.getElementById('result-content');
+            const progressFill = document.getElementById('progress-fill');
+            const progressPercent = document.getElementById('progress-percent');
+            
+            // 初始化问卷
+            function initSurvey() {
+                displayQuestions();
+                updateProgress();
+                
+                // 添加事件监听器
+                document.getElementById('save-config').addEventListener('click', saveConfig);
+                document.getElementById('reset-btn').addEventListener('click', resetSurvey);
+                document.getElementById('add-question').addEventListener('click', addQuestion);
+                document.getElementById('calculate-btn').addEventListener('click', calculateResults);
+                
+                // 从本地存储加载配置（如果存在）
+                loadConfigFromStorage();
+            }
+            
+            // 显示问题
+            function displayQuestions() {
+                questionsContainer.innerHTML = '';
+                
+                questions.forEach(question => {
+                    const questionElement = document.createElement('div');
+                    questionElement.className = 'question-item';
+                    questionElement.dataset.id = question.id;
+                    
+                    // 问题标题和删除按钮
+                    const questionHeader = document.createElement('div');
+                    questionHeader.className = 'question-header';
+                    
+                    const questionText = document.createElement('div');
+                    questionText.className = 'question-text';
+                    questionText.textContent = `问题 ${question.id}: ${question.text}`;
+                    
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'btn btn-small';
+                    deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                    deleteBtn.style.backgroundColor = 'transparent';
+                    deleteBtn.style.color = 'var(--secondary-color)';
+                    deleteBtn.style.border = '1px solid var(--secondary-color)';
+                    deleteBtn.addEventListener('click', () => deleteQuestion(question.id));
+                    
+                    questionHeader.appendChild(questionText);
+                    questionHeader.appendChild(deleteBtn);
+                    
+                    // 选项容器
+                    const optionsContainer = document.createElement('div');
+                    optionsContainer.className = 'options-container';
+                    
+                    // 创建选项
+                    question.options.forEach((option, index) => {
+                        const optionElement = document.createElement('div');
+                        optionElement.className = `option ${question.selected === index ? 'selected' : ''}`;
+                        optionElement.dataset.index = index;
+                        
+                        // 选项文本
+                        const optionText = document.createElement('span');
+                        optionText.textContent = `${String.fromCharCode(65 + index)}. ${option.text}`;
+                        
+                        // 分数显示
+                        const scoreElement = document.createElement('span');
+                        scoreElement.className = 'option-score';
+                        scoreElement.textContent = `${option.score}分`;
+                        
+                        optionElement.appendChild(optionText);
+                        optionElement.appendChild(scoreElement);
+                        
+                        // 添加点击事件
+                        optionElement.addEventListener('click', () => selectOption(question.id, index));
+                        
+                        optionsContainer.appendChild(optionElement);
+                    });
+                    
+                    // 编辑问题按钮
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'btn btn-small';
+                    editBtn.innerHTML = '<i class="fas fa-edit"></i> 编辑问题';
+                    editBtn.style.marginTop = '15px';
+                    editBtn.style.backgroundColor = 'transparent';
+                    editBtn.style.color = 'var(--primary-color)';
+                    editBtn.style.border = '1px solid var(--primary-color)';
+                    editBtn.addEventListener('click', () => editQuestion(question.id));
+                    
+                    questionElement.appendChild(questionHeader);
+                    questionElement.appendChild(optionsContainer);
+                    questionElement.appendChild(editBtn);
+                    
+                    questionsContainer.appendChild(questionElement);
+                });
+            }
+            
+            // 选择选项
+            function selectOption(questionId, optionIndex) {
+                const question = questions.find(q => q.id === questionId);
+                if (question) {
+                    question.selected = optionIndex;
+                    
+                    // 更新UI
+                displayQuestions();
+                
+                // 添加动画效果
+                const selectedOption = document.querySelector(`.question-item[data-id="${questionId}"] .option[data-index="${optionIndex}"]`);
+                if (selectedOption) {
+                    selectedOption.classList.add('pulse');
+                    
+                    // 移除动画类，以便下次可以再次添加
+                    setTimeout(() => {
+                        selectedOption.classList.remove('pulse');
+                    }, 500);
+                }
+                
+                updateProgress();
+            }
+        }
+        
+        // 删除问题
+        function deleteQuestion(questionId) {
+            if (questions.length <= 1) {
+                alert('至少需要保留一个问题！');
+                return;
+            }
+            
+            questions = questions.filter(q => q.id !== questionId);
+            
+            // 重新编号问题ID
+            questions.forEach((q, index) => {
+                q.id = index + 1;
+            });
+            
+            displayQuestions();
+            updateProgress();
+        }
+        
+        // 编辑问题
+        function editQuestion(questionId) {
+            const question = questions.find(q => q.id === questionId);
+            if (!question) return;
+            
+            const newText = prompt('请输入问题内容：', question.text);
+            if (newText && newText.trim() !== '') {
+                question.text = newText.trim();
+                
+                // 编辑选项
+                for (let i = 0; i < question.options.length; i++) {
+                    const newOptionText = prompt(`请输入选项 ${String.fromCharCode(65 + i)} 的内容：`, question.options[i].text);
+                    if (newOptionText && newOptionText.trim() !== '') {
+                        question.options[i].text = newOptionText.trim();
+                    }
+                }
+                
+                displayQuestions();
+            }
+        }
+        
+        // 添加问题
+        function addQuestion() {
+            const newId = questions.length > 0 ? Math.max(...questions.map(q => q.id)) + 1 : 1;
+            
+            const newQuestion = {
+                id: newId,
+                text: "请点击'编辑问题'修改此问题内容",
+                options: [
+                    {text: "选项A内容", score: 1},
+                    {text: "选项B内容", score: 2},
+                    {text: "选项C内容", score: 3},
+                    {text: "选项D内容", score: 4}
+                ],
+                selected: null
+            };
+            
+            questions.push(newQuestion);
+            displayQuestions();
+            
+            // 滚动到新添加的问题
+            setTimeout(() => {
+                const newQuestionElement = document.querySelector(`.question-item[data-id="${newId}"]`);
+                if (newQuestionElement) {
+                    newQuestionElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    newQuestionElement.classList.add('bounce');
+                    
+                    setTimeout(() => {
+                        newQuestionElement.classList.remove('bounce');
+                    }, 500);
+                }
+            }, 100);
+        }
+        
+        // 更新进度
+        function updateProgress() {
+            const answeredCount = questions.filter(q => q.selected !== null).length;
+            const totalCount = questions.length;
+            const percentage = totalCount > 0 ? Math.round((answeredCount / totalCount) * 100) : 0;
+            
+            progressFill.style.width = `${percentage}%`;
+            progressPercent.textContent = `${percentage}%`;
+        }
+        
+        // 计算得分
+        function calculateResults() {
+            // 检查是否所有问题都已回答
+            const unansweredQuestions = questions.filter(q => q.selected === null);
+            if (unansweredQuestions.length > 0) {
+                alert(`您还有 ${unansweredQuestions.length} 个问题未回答，请完成所有问题后再查看结果。`);
+                return;
+            }
+            
+            // 计算总分
+            let totalScore = 0;
+            let maxScore = 0;
+            
+            questions.forEach(question => {
+                totalScore += question.options[question.selected].score;
+                maxScore += 4; // 每个问题的最高分是4分
+            });
+            
+            // 计算百分比
+            const percentage = Math.round((totalScore / maxScore) * 100);
+            
+            // 显示结果
+            totalScoreElement.textContent = totalScore;
+            totalScoreElement.classList.add('pulse');
+            
+            // 根据百分比确定结果类型
+            let resultText = "";
+            if (percentage <= 25) {
+                resultText = resultLowInput.value || "低分段结果描述未设置";
+            } else if (percentage <= 75) {
+                resultText = resultMediumInput.value || "中分段结果描述未设置";
+            } else {
+                resultText = resultHighInput.value || "高分段结果描述未设置";
+            }
+            
+            resultContentElement.innerHTML = `
+                <p>${resultText}</p>
+                <p style="margin-top: 15px; font-style: italic; color: var(--primary-color);">
+                    您的得分为 <strong>${totalScore}</strong> 分（满分 ${maxScore} 分），属于 ${percentage <= 25 ? '低' : percentage <= 75 ? '中' : '高'}分段。
+                </p>
+            `;
+            
+            // 显示结果容器
+            resultContainer.style.display = 'block';
+            
+            // 滚动到结果区域
+            setTimeout(() => {
+                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+            
+            // 移除动画类
+            setTimeout(() => {
+                totalScoreElement.classList.remove('pulse');
+            }, 500);
+        }
+        
+        // 保存配置
+        function saveConfig() {
+            displayTitle.textContent = surveyTitleInput.value || "未命名问卷";
+            displayDescription.textContent = surveyDescriptionInput.value || "暂无描述";
+            
+            // 保存到本地存储
+            const config = {
+                title: surveyTitleInput.value,
+                description: surveyDescriptionInput.value,
+                resultLow: resultLowInput.value,
+                resultMedium: resultMediumInput.value,
+                resultHigh: resultHighInput.value,
+                questions: questions
+            };
+            
+            localStorage.setItem('surveyConfig', JSON.stringify(config));
+            
+            // 显示保存成功反馈
+            const saveBtn = document.getElementById('save-config');
+            const originalText = saveBtn.innerHTML;
+            saveBtn.innerHTML = '<i class="fas fa-check"></i> 已保存';
+            saveBtn.style.backgroundColor = 'var(--success-color)';
+            
+            setTimeout(() => {
+                saveBtn.innerHTML = originalText;
+                saveBtn.style.backgroundColor = '';
+            }, 1500);
+        }
+        
+        // 从本地存储加载配置
+        function loadConfigFromStorage() {
+            const savedConfig = localStorage.getItem('surveyConfig');
+            if (savedConfig) {
+                try {
+                    const config = JSON.parse(savedConfig);
+                    
+                    // 恢复配置
+                    surveyTitleInput.value = config.title || "个性倾向调查问卷";
+                    surveyDescriptionInput.value = config.description || "请根据您的实际情况选择最符合的选项...";
+                    resultLowInput.value = config.resultLow || "";
+                    resultMediumInput.value = config.resultMedium || "";
+                    resultHighInput.value = config.resultHigh || "";
+                    
+                    if (config.questions && config.questions.length > 0) {
+                        questions = config.questions;
+                    }
+                    
+                    // 更新显示
+                    displayTitle.textContent = config.title || "个性倾向调查问卷";
+                    displayDescription.textContent = config.description || "请根据您的实际情况选择最符合的选项...";
+                    
+                    displayQuestions();
+                    updateProgress();
+                } catch (e) {
+                    console.error("加载配置失败:", e);
+                }
+            }
+        }
+        
+        // 重置问卷
+        function resetSurvey() {
+            if (confirm("确定要重置问卷吗？这将清除所有已回答的问题和结果。")) {
+                questions.forEach(question => {
+                    question.selected = null;
+                });
+                
+                displayQuestions();
+                updateProgress();
+                resultContainer.style.display = 'none';
+                
+                // 添加重置动画
+                const resetBtn = document.getElementById('reset-btn');
+                resetBtn.classList.add('pulse');
+                
+                setTimeout(() => {
+                    resetBtn.classList.remove('pulse');
+                }, 500);
+            }
+        }
+        
+        // 初始化问卷
+        initSurvey();
+    });
+    </script>
+</body>
+</html>
